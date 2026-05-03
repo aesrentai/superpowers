@@ -28,12 +28,12 @@ fi
 
 echo ""
 
-# Test 2: Verify skill describes correct workflow order
-echo "Test 2: Workflow ordering..."
+# Test 2: Verify spec compliance review is used
+echo "Test 2: Spec compliance review..."
 
-output=$(run_claude "In the subagent-driven-development skill, what comes first: spec compliance review or code quality review? Be specific about the order." 30)
+output=$(run_claude "In the subagent-driven-development skill, what review happens after an implementer finishes a task?" 30)
 
-if assert_order "$output" "spec.*compliance" "code.*quality" "Spec compliance before code quality"; then
+if assert_contains "$output" "spec.*compliance" "Spec compliance review mentioned"; then
     : # pass
 else
     exit 1

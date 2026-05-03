@@ -1,22 +1,22 @@
 ---
 name: requesting-code-review
-description: Use when completing tasks, implementing major features, or before merging to verify work meets requirements
+description: Use at substantial review points: after a major feature, before merge, before opening a PR for external review, or when risk justifies an extra review
 ---
 
 # Requesting Code Review
 
-Dispatch superpowers:code-reviewer subagent to catch issues before they cascade. The reviewer gets precisely crafted context for evaluation — never your session's history. This keeps the reviewer focused on the work product, not your thought process, and preserves your own context for continued work.
+Dispatch superpowers:code-reviewer subagent to catch concrete issues at meaningful checkpoints. The reviewer gets precisely crafted context for evaluation — never your session's history. This keeps the reviewer focused on the work product, not your thought process, and preserves your own context for continued work.
 
-**Core principle:** Review early, review often.
+**Core principle:** Review when the checkpoint or risk justifies the extra context and token cost.
 
 ## When to Request Review
 
-**Mandatory:**
-- After each task in subagent-driven development
-- After completing major feature
+**Use for substantial review points:**
+- After completing a major feature
 - Before merge to main
+- Before opening a PR for external review
 
-**Optional but valuable:**
+**Optional but valuable when the risk justifies the extra review:**
 - When stuck (fresh perspective)
 - Before refactoring (baseline check)
 - After fixing complex bug
@@ -49,7 +49,7 @@ Use Task tool with superpowers:code-reviewer type, fill template at `code-review
 ## Example
 
 ```
-[Just completed Task 2: Add verification function]
+[Just completed a major feature: verification and repair workflow]
 
 You: Let me request code review before proceeding.
 
@@ -76,11 +76,6 @@ You: [Fix progress indicators]
 
 ## Integration with Workflows
 
-**Subagent-Driven Development:**
-- Review after EACH task
-- Catch issues before they compound
-- Fix before moving to next task
-
 **Executing Plans:**
 - Review after each batch (3 tasks)
 - Get feedback, apply, continue
@@ -92,7 +87,7 @@ You: [Fix progress indicators]
 ## Red Flags
 
 **Never:**
-- Skip review because "it's simple"
+- Skip a substantial review point because "it's simple"
 - Ignore Critical issues
 - Proceed with unfixed Important issues
 - Argue with valid technical feedback

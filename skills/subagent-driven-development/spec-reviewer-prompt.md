@@ -53,6 +53,23 @@ Task tool (general-purpose):
     - Did they solve the wrong problem?
     - Did they implement the right feature but wrong way?
 
+    **Obvious bad choices:**
+    - Does the implementation technically satisfy the spec while obviously creating a bad design or avoidable risk?
+    - Did it use hardcoded secrets, credentials, tokens, private keys, or real user data?
+    - Did it add global mutable state without a clear reason?
+    - Did it hide state machines in scattered globals or booleans instead of explicit state?
+    - Did Rust code use `Arc<T>` or `.clone()` just to appease the borrow checker instead of because shared ownership or cloning is actually necessary?
+    - Did it use outdated language/runtime/tooling choices when the codebase has a newer standard?
+    - Did it add new dependencies for trivial functionality?
+    - Did it silently swallow errors, ignore failed commands, or use catch-all handlers that hide failures?
+    - Did it create data loss risks, unsafe migrations, destructive defaults, or irreversible operations without guardrails?
+    - Did it make security boundary mistakes: auth bypass, permission broadening, injection risks, or unsafe shelling out?
+    - Did it hardcode absolute paths, ports, hostnames, time zones, or environment assumptions?
+    - Did it add flaky timing: sleeps/timeouts where condition-based waiting is needed?
+    - Did tests prove mocks/framework behavior instead of the changed behavior?
+    - Did it include large unrelated refactors, formatting churn, generated-file churn, or scope creep?
+    - Did it add performance footguns that are obvious on a relevant path?
+
     **Verify by reading code, not by trusting report.**
 
     Report:

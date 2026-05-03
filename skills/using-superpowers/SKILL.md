@@ -1,6 +1,6 @@
 ---
 name: using-superpowers
-description: Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions
+description: Use when starting any conversation - establishes how to find and use skills, including when one-shot work should proceed directly
 ---
 
 <SUBAGENT-STOP>
@@ -8,7 +8,7 @@ If you were dispatched as a subagent to execute a specific task, skip this skill
 </SUBAGENT-STOP>
 
 <EXTREMELY-IMPORTANT>
-If you think there is even a 1% chance a skill might apply to what you are doing, you ABSOLUTELY MUST invoke the skill.
+Except for one-shot work as defined below, if you think there is even a 1% chance a skill might apply to what you are doing, you ABSOLUTELY MUST invoke the skill.
 
 IF A SKILL APPLIES TO YOUR TASK, YOU DO NOT HAVE A CHOICE. YOU MUST USE IT.
 
@@ -43,7 +43,17 @@ Skills use Claude Code tool names. Non-CC platforms: see `references/copilot-too
 
 ## The Rule
 
-**Invoke relevant or requested skills BEFORE any response or action.** Even a 1% chance a skill might apply means that you should invoke the skill to check. If an invoked skill turns out to be wrong for the situation, you don't need to use it.
+**Invoke relevant or requested skills BEFORE any response or action, except for one-shot work.** Even a 1% chance a skill might apply means that you should invoke the skill to check. If an invoked skill turns out to be wrong for the situation, you don't need to use it.
+
+## One-Shot Exception
+
+Do not invoke workflow skills for one-shot work. Implement directly, verify, and report.
+
+One-shot work means either:
+- A new project whose scope is not obviously large. Optimize for getting a working version in front of the user.
+- A bugfix that preserves the existing spec/API/behavior contract. Fix the broken behavior without reopening design.
+
+If scope becomes obviously large, ambiguous, changes the spec, or exposes a new public API/behavior contract, stop and use the relevant workflow skill.
 
 ```dot
 digraph skill_flow {

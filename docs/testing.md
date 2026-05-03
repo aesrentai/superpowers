@@ -46,7 +46,7 @@ The integration test verifies the `subagent-driven-development` skill correctly:
 1. **Plan Loading**: Reads the plan once at the beginning
 2. **Full Task Text**: Provides complete task descriptions to subagents (doesn't make them read files)
 3. **Self-Review**: Ensures subagents perform self-review before reporting
-4. **Review Order**: Runs spec compliance review before code quality review
+4. **Spec Review**: Runs spec compliance review after implementation
 5. **Review Loops**: Uses review loops when issues are found
 6. **Independent Verification**: Spec reviewer reads code independently, doesn't trust implementer reports
 
@@ -108,9 +108,6 @@ main            Main session (coordinator)             34         27      3,996 
 3380c209        implementing Task 1: Create Add Function     1          2        787     24,989 $   0.09
 34b00fde        implementing Task 2: Create Multiply Function     1          4        644     25,114 $   0.09
 3801a732        reviewing whether an implementation matches...   1          5        703     25,742 $   0.09
-4c142934        doing a final code review...                    1          6        854     25,319 $   0.09
-5f017a42        a code reviewer. Review Task 2...               1          6        504     22,949 $   0.08
-a6b7fbe4        a code reviewer. Review Task 1...               1          6        515     22,534 $   0.08
 f15837c0        reviewing whether an implementation matches...   1          6        416     22,485 $   0.07
 ----------------------------------------------------------------------------------------------------
 

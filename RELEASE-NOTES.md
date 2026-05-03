@@ -255,7 +255,6 @@ Design-for-isolation and file-size-awareness guidance added to brainstorming, wr
 - **Brainstorming** — New sections: "Design for isolation and clarity" (clear boundaries, well-defined interfaces, independently testable units) and "Working in existing codebases" (follow existing patterns, targeted improvements only)
 - **Writing-plans** — New "File Structure" section: map out files and responsibilities before defining tasks. New "Scope Check" backstop: catch multi-subsystem specs that should have been decomposed during brainstorming
 - **SDD implementer** — New "Code Organization" section (follow plan's file structure, report concerns about growing files) and "When You're in Over Your Head" escalation guidance
-- **SDD code quality reviewer** — Now checks architecture, unit decomposition, plan conformance, and file growth
 - **Spec/plan reviewers** — Architecture and file size added to review criteria
 - **Scope assessment** — Brainstorming now assesses whether a project is too large for a single spec. Multi-subsystem requests are flagged early and decomposed into sub-projects, each with its own spec → plan → implementation cycle
 
@@ -529,7 +528,6 @@ Other subagent workflow improvements:
 New prompt templates in `skills/subagent-driven-development/`:
 - `implementer-prompt.md` - Includes self-review checklist, encourages questions
 - `spec-reviewer-prompt.md` - Skeptical verification against requirements
-- `code-quality-reviewer-prompt.md` - Standard code review
 
 **Debugging techniques consolidated with tools**
 

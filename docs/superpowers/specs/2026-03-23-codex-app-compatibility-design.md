@@ -195,7 +195,7 @@ names, commit messages, and PR descriptions for the user to copy.
 
 ## What Does NOT Change
 
-- `implementer-prompt.md`, `spec-reviewer-prompt.md`, `code-quality-reviewer-prompt.md` — subagent prompts untouched
+- `implementer-prompt.md`, `spec-reviewer-prompt.md` — subagent prompts untouched
 - `executing-plans/SKILL.md` — only the 1-line Integration description changes (same as `subagent-driven-development`); all runtime behavior is unchanged
 - `dispatching-parallel-agents/SKILL.md` — no worktree or finishing operations
 - `.codex/INSTALL.md` — installation process unchanged

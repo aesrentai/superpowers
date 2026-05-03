@@ -15,18 +15,31 @@ Write the test first. Watch it fail. Write minimal code to pass.
 
 ## When to Use
 
-**Always:**
-- New features
-- Bug fixes
-- Refactoring
-- Behavior changes
+**Always for external behavior:**
+- New user-visible features
+- Bug fixes that reproduce through a user-visible or exported interface
+- Refactoring that affects an exported interface or user-visible behavior
+- Behavior changes at the boundary of a crate, package, module, namespace, class, command, API endpoint, UI, or other language/framework boundary
+
+**Internal code:**
+- First inspect the codebase and identify what is external vs internal for this change.
+- External means anything exported outside the current isolation boundary, where the boundary is language/framework specific: crate, package, module, namespace, class, command, API endpoint, UI, etc.
+- Internal means implementation details used only inside that boundary.
+- Test external behavior extensively with the red-green-refactor cycle.
+- Internal code does not need direct tests unless there is a specific reason: performance-sensitive logic, high-risk edge cases, tricky algorithms, or no practical way to verify the behavior through the external interface.
+
+**Testing harness limits:**
+- Before writing tests, identify what the available test harness can actually observe.
+- Do not force a unit test to prove behavior it cannot observe. If the behavior only exists across wiring, packaging, CLI parsing, framework integration, filesystem/process/network boundaries, browser behavior, or real exported interfaces, use an integration test, end-to-end test, smoke test, or targeted manual verification.
+- Prefer fewer tests that exercise the real boundary over many tests that mock the boundary.
+- If the correct verification requires a different harness, use that harness or state the limitation instead of writing a misleading test.
 
 **Exceptions (ask your human partner):**
 - Throwaway prototypes
 - Generated code
 - Configuration files
 
-Thinking "skip TDD just this once"? Stop. That's rationalization.
+Thinking "skip TDD for an external behavior change"? Stop. That's rationalization.
 
 ## The Iron Law
 
@@ -328,7 +341,8 @@ Extract validation for multiple fields if needed.
 
 Before marking work complete:
 
-- [ ] Every new function/method has a test
+- [ ] Every external behavior change has a test or focused verification through the user-visible or exported interface
+- [ ] Verification uses a harness that can actually observe the behavior being claimed
 - [ ] Watched each test fail before implementing
 - [ ] Each test failed for expected reason (feature missing, not typo)
 - [ ] Wrote minimal code to pass each test
