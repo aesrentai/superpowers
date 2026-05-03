@@ -1,6 +1,6 @@
 ---
 name: requesting-code-review
-description: Use at substantial review points: after a major feature, before merge, before opening a PR for external review, or when risk justifies an extra review
+description: "Use at substantial review points: after a major feature, before merge, before opening a PR for external review, or when risk justifies an extra review"
 ---
 
 # Requesting Code Review
