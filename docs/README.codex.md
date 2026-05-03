@@ -1,13 +1,13 @@
-# Superpowers for Codex
+# Superpowers for Codex CLI
 
-Guide for using Superpowers with OpenAI Codex via native skill discovery.
+Guide for using Superpowers with OpenAI Codex CLI via native skill and custom-agent discovery.
 
 ## Quick Install
 
 Tell Codex:
 
 ```
-Fetch and follow instructions from https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.codex/INSTALL.md
+Fetch and follow instructions from https://raw.githubusercontent.com/aesrentai/superpowers/refs/heads/main/.codex/INSTALL.md
 ```
 
 ## Manual Installation
@@ -21,22 +21,17 @@ Fetch and follow instructions from https://raw.githubusercontent.com/obra/superp
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/obra/superpowers.git ~/.codex/superpowers
+   git clone https://github.com/aesrentai/superpowers.git ~/.codex/superpowers
    ```
 
-2. Create the skills symlink:
+2. Create the skills and agent symlinks:
    ```bash
-   mkdir -p ~/.agents/skills
+   mkdir -p ~/.agents/skills ~/.codex/agents
    ln -s ~/.codex/superpowers/skills ~/.agents/skills/superpowers
+   ln -s ~/.codex/superpowers/.codex/agents/code-reviewer.toml ~/.codex/agents/code-reviewer.toml
    ```
 
 3. Restart Codex.
-
-4. **For subagent skills** (optional): Skills like `dispatching-parallel-agents` and `subagent-driven-development` require Codex's multi-agent feature. Add to your Codex config:
-   ```toml
-   [features]
-   multi_agent = true
-   ```
 
 ### Windows
 
@@ -44,7 +39,9 @@ Use a junction instead of a symlink (works without Developer Mode):
 
 ```powershell
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills"
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.codex\agents"
 cmd /c mklink /J "$env:USERPROFILE\.agents\skills\superpowers" "$env:USERPROFILE\.codex\superpowers\skills"
+Copy-Item "$env:USERPROFILE\.codex\superpowers\.codex\agents\code-reviewer.toml" "$env:USERPROFILE\.codex\agents\code-reviewer.toml" -Force
 ```
 
 ## How It Works
@@ -55,7 +52,9 @@ Codex has native skill discovery — it scans `~/.agents/skills/` at startup, pa
 ~/.agents/skills/superpowers/ → ~/.codex/superpowers/skills/
 ```
 
-The `using-superpowers` skill is discovered automatically and enforces skill usage discipline — no additional configuration needed.
+Codex also loads custom agents from `~/.codex/agents/`. Superpowers installs a `code-reviewer` agent there so review requests can use a real Codex custom agent instead of only a prompt template.
+
+The `using-superpowers` skill is discovered automatically and enforces skill usage discipline.
 
 ## Usage
 
@@ -93,17 +92,19 @@ The `description` field is how Codex decides when to activate a skill automatica
 cd ~/.codex/superpowers && git pull
 ```
 
-Skills update instantly through the symlink.
+Skills and the custom agent update instantly through the symlinks.
 
 ## Uninstalling
 
 ```bash
 rm ~/.agents/skills/superpowers
+rm ~/.codex/agents/code-reviewer.toml
 ```
 
 **Windows (PowerShell):**
 ```powershell
 Remove-Item "$env:USERPROFILE\.agents\skills\superpowers"
+Remove-Item "$env:USERPROFILE\.codex\agents\code-reviewer.toml"
 ```
 
 Optionally delete the clone: `rm -rf ~/.codex/superpowers` (Windows: `Remove-Item -Recurse -Force "$env:USERPROFILE\.codex\superpowers"`).
@@ -115,6 +116,12 @@ Optionally delete the clone: `rm -rf ~/.codex/superpowers` (Windows: `Remove-Ite
 1. Verify the symlink: `ls -la ~/.agents/skills/superpowers`
 2. Check skills exist: `ls ~/.codex/superpowers/skills`
 3. Restart Codex — skills are discovered at startup
+
+### Code reviewer agent not showing up
+
+1. Verify the symlink: `ls -la ~/.codex/agents/code-reviewer.toml`
+2. Check the source exists: `ls ~/.codex/superpowers/.codex/agents/code-reviewer.toml`
+3. Restart Codex — custom agents are discovered at startup
 
 ### Windows junction issues
 

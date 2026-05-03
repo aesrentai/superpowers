@@ -36,6 +36,16 @@ Thanks!
 
 **Note:** Installation differs by platform. 
 
+### OpenAI Codex CLI
+
+For this Codex-first fork, use the installer so both the skills and the Codex `code-reviewer` custom agent are installed:
+
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/aesrentai/superpowers/refs/heads/main/.codex/INSTALL.md
+```
+
+The Codex plugin directory install is still available upstream, but the manual installer is the path that wires this fork's custom agent into Codex CLI.
+
 ### Claude Code Official Marketplace
 
 Superpowers is available via the [official Claude plugin marketplace](https://claude.com/plugins/superpowers)
@@ -61,29 +71,6 @@ Then install the plugin from this marketplace:
 ```bash
 /plugin install superpowers@superpowers-marketplace
 ```
-
-### OpenAI Codex CLI
-
-- Open plugin search interface
-
-```bash
-/plugins
-```
-
-Search for Superpowers
-
-```bash
-superpowers
-```
-
-Select `Install Plugin`
-
-### OpenAI Codex App
-
-- In the Codex app, click on Plugins in the sidebar.
-- You should see `Superpowers` in the Coding section. 
-- Click the `+` next to Superpowers and follow the prompts.
-
 
 ### Cursor (via Plugin Marketplace)
 
