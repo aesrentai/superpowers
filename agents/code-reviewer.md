@@ -1,6 +1,6 @@
 ---
 name: code-reviewer
-description: Use this agent at substantial review points: after a major feature, before merge, or before opening a PR for external review. Review the diff against the plan/spec and nearby code for concrete defects, missing behavior, type-safety issues, inadequate real-interface tests, and obvious bad choices. Do not use for minor straightforward changes or style-only review.
+description: "Use this agent at substantial review points: after a major feature, before merge, or before opening a PR for external review. Review the diff against the plan/spec and nearby code for concrete defects, missing behavior, type-safety issues, inadequate real-interface tests, and obvious bad choices. Do not use for minor straightforward changes or style-only review."
 model: inherit
 ---
 
